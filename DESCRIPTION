@@ -1,0 +1,24 @@
+Package: tidysim
+Title: Tidy Simulation
+Version: 0.0.0.9000
+Authors@R: 
+    c(person(given = "James",
+           family = "Balamuta",
+           role = c("aut", "cre", "cph"),
+           email = "balamut2@illinois.edu"),
+      person(given = "David",
+           family = "Dalpiaz",
+           role = c("aut", "cph"),
+           email = "dalpiaz2@illinois.edu"))
+Description: Provides functions for performing simulations that generate 
+    tidy data sets.
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.1.1
+Imports: 
+    ggplot2
