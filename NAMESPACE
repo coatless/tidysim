@@ -2,6 +2,7 @@
 
 S3method(autoplot,sim_df)
 S3method(plot,sim_df)
+export(autoplot)
 export(sim_df)
 export(study_df)
 importFrom(ggplot2,autoplot)
