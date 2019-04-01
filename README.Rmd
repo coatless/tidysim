@@ -1,0 +1,87 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# tidysim
+
+<!-- badges: start -->
+[![Travis build status](https://travis-ci.org/coatless/tidysim.svg?branch=master)](https://travis-ci.org/coatless/tidysim)
+[![CRAN status](https://www.r-pkg.org/badges/version/tidysim)](https://cran.r-project.org/package=tidysim)
+<!-- badges: end -->
+
+The goal of `tidysim` is to provide tools for manipulating simulation data 
+into a tidy format.
+
+## Installation
+
+You can install the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("coatless/tidysim")
+```
+
+## Examples
+
+The common task when running simulation studies is to estimate parameters
+underneath a specific method and then compare the results. Estimated parameter
+data is stored in a `matrix` with each simulation iteration taking a column
+and each variable estimation taking a row or vice versa. 
+
+```{r demo-load-sim}
+# Set Seed
+set.seed(5812)
+# Generate data
+my_sim = matrix(rnorm(8), nrow = 2, ncol = 4)
+
+# Apply labels
+rownames(my_sim) = c("Beta0", "Beta1")
+colnames(my_sim) = paste0("Sim", seq_len(ncol(my_sim)) )
+
+# Example data
+my_sim
+```
+
+Data stored in this manner is problematic as it isn't easily graphable under
+a tidy approach.  
+
+
+Within `tidysim`, the simulation matrix is converted into a
+tidy `data.frame`.  The `Round` variable indicates the simulation number
+and the `Parameter` variable stores the parameter being estimated. Once the
+data is generated, it can be coerced into the appropiate shape with
+`sim_df(..., wide)`, where `wide` denotes whether to treat the simulation
+data as having repeated estimates for parameter estimates given in the columns
+or stored row-wise.
+
+```{r show-wide-sim}
+# Load package
+library("tidysim")
+
+# Organize by row
+my_sim_from_wide = sim_df(my_sim, wide = TRUE)
+
+# View first 5 rows
+head(my_sim_from_wide, n = 5)
+
+autoplot(my_sim_from_wide)
+```
+
+
+## Authors
+
+James Joseph Balamuta and David Dalpiaz
+
+## License
+
+GPL (>= 2)
