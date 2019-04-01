@@ -25,9 +25,9 @@
 #' @return
 #' A `data.frame` with three variables:
 #'
-#' -`Round`: Iteration of the Simulation
-#' -`Draw`: Draw during the iteration of the simulation
-#' -`Value`: Value of the statistic at round and draw
+#' - `Round`: Iteration of the Simulation
+#' - `Draw`: Draw during the iteration of the simulation
+#' - `Value`: Value of the statistic at round and draw
 #'
 #' @author
 #' James Joseph Balamuta
@@ -89,10 +89,10 @@ cast_simdf = function(m, wide = TRUE){
 #'
 #' A `data.frame` with three variables:
 #'
-#' -`Round`: Iteration of the Simulation
-#' -`Draw`: Draw during the iteration of the simulation
-#' -`Value`: Value of the statistic at round and draw
-#' -`Type`: Study Matrix
+#' - `Round`: Iteration of the Simulation
+#' - `Draw`: Draw during the iteration of the simulation
+#' - `Value`: Value of the statistic at round and draw
+#' - `Type`: Study Matrix
 #'
 #' @author
 #' James Joseph Balamuta
@@ -141,7 +141,6 @@ study_df = function(..., wide = TRUE, data_names = NULL){
     class(o) = c("study_df", "data.frame")
     o
 }
-
 
 #' Plot Simulation Trials
 #'

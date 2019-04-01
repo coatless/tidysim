@@ -18,10 +18,10 @@ empty it uses the simulation matrix name}
 \value{
 A `data.frame` with three variables:
 
--`Round`: Iteration of the Simulation
--`Draw`: Draw during the iteration of the simulation
--`Value`: Value of the statistic at round and draw
--`Type`: Study Matrix
+- `Round`: Iteration of the Simulation
+- `Draw`: Draw during the iteration of the simulation
+- `Value`: Value of the statistic at round and draw
+- `Type`: Study Matrix
 }
 \description{
 Creates a `data.frame` out of multiple simulation matrices

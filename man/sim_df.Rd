@@ -15,9 +15,9 @@ by row (`TRUE`) or column (`FALSE`). Default: By row (`TRUE`).}
 \value{
 A `data.frame` with three variables:
 
--`Round`: Iteration of the Simulation
--`Draw`: Draw during the iteration of the simulation
--`Value`: Value of the statistic at round and draw
+- `Round`: Iteration of the Simulation
+- `Draw`: Draw during the iteration of the simulation
+- `Value`: Value of the statistic at round and draw
 }
 \description{
 Creates a `data.frame` out of a simulation matrix
