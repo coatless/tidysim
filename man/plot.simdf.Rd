@@ -15,7 +15,7 @@
 \item{...}{Not used...}
 }
 \description{
-Constructs a line graph containing different simulations
+Constructs a boxplot graph containing different simulations
 }
 \examples{
 # Set Seed

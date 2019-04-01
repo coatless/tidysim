@@ -16,7 +16,7 @@ by row (`TRUE`) or column (`FALSE`). Default: By row (`TRUE`).}
 A `data.frame` with three variables:
 
 - `Round`: Iteration of the Simulation
-- `Draw`: Draw during the iteration of the simulation
+- `Parameter`: Parameter that was Estimated during Simulation
 - `Value`: Value of the statistic at round and draw
 }
 \description{
@@ -30,10 +30,14 @@ set.seed(5812)
 # Generate data
 m = matrix(rnorm(10), 2,5)
 
-# Organize data.frame by row
+# Organize data by column, e.g.
+# Each column is a repeated measurement
+# Each row is a variable
 sim_df(m)
 
-# Organize by column
+# Organize the data by row, e.g.
+# Each row is a repeated measurement
+# Each column is a variable
 sim_df(m, wide = FALSE)
 }
 \author{

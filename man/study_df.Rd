@@ -19,7 +19,7 @@ empty it uses the simulation matrix name}
 A `data.frame` with three variables:
 
 - `Round`: Iteration of the Simulation
-- `Draw`: Draw during the iteration of the simulation
+- `Parameter`: Parameter that was Estimated during Simulation
 - `Value`: Value of the statistic at round and draw
 - `Type`: Study Matrix
 }

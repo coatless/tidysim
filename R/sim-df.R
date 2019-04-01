@@ -26,7 +26,7 @@
 #' A `data.frame` with three variables:
 #'
 #' - `Round`: Iteration of the Simulation
-#' - `Draw`: Draw during the iteration of the simulation
+#' - `Parameter`: Parameter that was Estimated during Simulation
 #' - `Value`: Value of the statistic at round and draw
 #'
 #' @author
@@ -40,10 +40,14 @@
 #' # Generate data
 #' m = matrix(rnorm(10), 2,5)
 #'
-#' # Organize data.frame by row
+#' # Organize data by column, e.g.
+#' # Each column is a repeated measurement
+#' # Each row is a variable
 #' sim_df(m)
 #'
-#' # Organize by column
+#' # Organize the data by row, e.g.
+#' # Each row is a repeated measurement
+#' # Each column is a variable
 #' sim_df(m, wide = FALSE)
 sim_df = function(m, wide = TRUE){
 
@@ -58,19 +62,26 @@ cast_simdf = function(m, wide = TRUE){
         stop("`m` must be a `matrix`.")
     }
 
+    # Retrieve naming scheme
+    # Note: Names might be MIA
+    column_header_values = colnames(m)
+    row_header_values = rownames(m)
+
+    # Figure out dimensions
     n = nrow(m)
     p = ncol(m)
 
     if (wide) {
-        Round = seq_len(n)
-        Draw = seq_len(p)
+        Parameter = row_header_values %||% seq_len(n)
+        Round = column_header_values %||% seq_len(p)
     } else{
-        Draw = seq_len(n)
-        Round = seq_len(p)
+
+        Parameter = column_header_values %||% seq_len(p)
+        Round = row_header_values %||% seq_len(n)
     }
 
     # Hacked from as.data.frame(as.table())
-    data.frame(expand.grid(Round = Round, Draw = Draw), Values = c(m))
+    data.frame(expand.grid(Round = Round, Parameter = Parameter), Values = c(m))
 }
 
 
@@ -90,7 +101,7 @@ cast_simdf = function(m, wide = TRUE){
 #' A `data.frame` with three variables:
 #'
 #' - `Round`: Iteration of the Simulation
-#' - `Draw`: Draw during the iteration of the simulation
+#' - `Parameter`: Parameter that was Estimated during Simulation
 #' - `Value`: Value of the statistic at round and draw
 #' - `Type`: Study Matrix
 #'
@@ -144,7 +155,7 @@ study_df = function(..., wide = TRUE, data_names = NULL){
 
 #' Plot Simulation Trials
 #'
-#' Constructs a line graph containing different simulations
+#' Constructs a boxplot graph containing different simulations
 #'
 #' @param x,object An [`sim_df()`] object.
 #' @param ...      Not used...
@@ -178,14 +189,14 @@ autoplot.sim_df = function(object, ...){
 
     ggplot2::ggplot(object) +
         ggplot2::aes(
-            x = Draw,
+            x = Parameter,
             y = Values,
-            group = factor(Round),
-            color = factor(Round)
+            group = factor(Parameter),
+            color = factor(Parameter)
         ) +
-        ggplot2::geom_line(size = 1) +
+        ggplot2::geom_boxplot(size = 1) +
         ggplot2::theme_bw() +
-        ggplot2::labs(x = "Draw",
+        ggplot2::labs(x = "Parameter",
              y = "Values",
-             color = "Round")
+             color = "Parameter")
 }
